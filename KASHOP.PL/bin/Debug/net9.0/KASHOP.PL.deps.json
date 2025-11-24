@@ -14,6 +14,11 @@
         },
         "runtime": {
           "KASHOP.PL.dll": {}
+        },
+        "resources": {
+          "ar/KASHOP.PL.resources.dll": {
+            "locale": "ar"
+          }
         }
       },
       "Azure.Core/1.38.0": {

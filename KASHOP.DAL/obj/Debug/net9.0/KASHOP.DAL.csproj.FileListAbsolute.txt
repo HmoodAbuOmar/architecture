@@ -12,3 +12,4 @@ C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.DAL\obj\Debug\n
 C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.DAL\obj\Debug\net9.0\KASHOP.DAL.pdb
 C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.DAL\obj\Debug\net9.0\KASHOP.DAL.genruntimeconfig.cache
 C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.DAL\obj\Debug\net9.0\ref\KASHOP.DAL.dll
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.DAL\obj\Debug\net9.0\KASHOP.DAL.sourcelink.json

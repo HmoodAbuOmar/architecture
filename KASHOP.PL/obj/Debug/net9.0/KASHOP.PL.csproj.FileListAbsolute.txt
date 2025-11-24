@@ -165,3 +165,9 @@ C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\ne
 C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\net9.0\KASHOP.PL.pdb
 C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\net9.0\KASHOP.PL.genruntimeconfig.cache
 C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\net9.0\ref\KASHOP.PL.dll
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\bin\Debug\net9.0\ar\KASHOP.PL.resources.dll
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\net9.0\KASHOP.PL.Resourses.SharedResource.resources
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\net9.0\KASHOP.PL.Resourses.SharedResource.ar.resources
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\net9.0\KASHOP.PL.csproj.GenerateResource.cache
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\net9.0\KASHOP.PL.sourcelink.json
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\net9.0\ar\KASHOP.PL.resources.dll
