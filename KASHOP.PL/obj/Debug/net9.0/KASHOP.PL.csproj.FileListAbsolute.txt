@@ -171,3 +171,8 @@ C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\ne
 C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\net9.0\KASHOP.PL.csproj.GenerateResource.cache
 C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\net9.0\KASHOP.PL.sourcelink.json
 C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\net9.0\ar\KASHOP.PL.resources.dll
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\bin\Debug\net9.0\Mapster.dll
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\bin\Debug\net9.0\Mapster.Core.dll
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
