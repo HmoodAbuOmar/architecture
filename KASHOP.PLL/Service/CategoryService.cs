@@ -32,5 +32,6 @@ namespace KASHOP.BLL.Service
             var response = categories.Adapt<List<CategoryResponse>>();
             return response;
         }
+
     }
 }
