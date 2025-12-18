@@ -182,3 +182,4 @@ C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\bin\Debug\ne
 C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\hmood\OneDrive\Documents\asp\api\projects\KASHOP\KASHOP.PL\obj\Debug\net9.0\swae.build.ex.cache
