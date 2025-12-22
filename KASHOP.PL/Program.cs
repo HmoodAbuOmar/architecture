@@ -76,36 +76,6 @@ namespace KASHOP.PL
                };
            });
 
-            builder.Services.AddSwaggerGen(c =>
-           {
-               c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "KASHOP API", Version = "v1" });
-
-               c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-               {
-                   Name = "Authorization",
-                   Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
-                   Scheme = "Bearer",
-                   BearerFormat = "JWT",
-                   In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-                   Description = "Enter: Bearer {your token}"
-               });
-
-               c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
-   {
-        {
-            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-            {
-                Reference = new Microsoft.OpenApi.Models.OpenApiReference
-                {
-                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            new string[] {}
-        }
-   });
-           });
-
 
             const string defaultCulture = "en";
 
@@ -128,14 +98,7 @@ namespace KASHOP.PL
             });
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-            builder.Services.AddScoped<ICategoryService, CategoryService>();
-            builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-
-            builder.Services.AddScoped<ISeedData, RoleSeedData>();
-            builder.Services.AddScoped<ISeedData, UserSeedData>();
-            builder.Services.AddTransient<IEmailSender, EmailSender>();
-
+            AppConfigurations.Config(builder.Services);
 
             var app = builder.Build();
             app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
