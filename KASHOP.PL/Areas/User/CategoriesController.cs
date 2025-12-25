@@ -4,6 +4,7 @@ using KASHOP.PL.Resourses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using System.Threading.Tasks;
 
 namespace KASHOP.PL.Areas.User
 {
@@ -21,9 +22,9 @@ namespace KASHOP.PL.Areas.User
         }
 
         [HttpGet("")]
-        public IActionResult index()
+        public async Task<IActionResult> index([FromQuery] string lang = "en")
         {
-            var response = _category.GetAllCategories();
+            var response = await _category.GetAllCategoriesForUser(lang);
             return Ok(new { message = _localizer["Success"].Value, response });
         }
 

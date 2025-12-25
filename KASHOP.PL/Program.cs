@@ -1,4 +1,5 @@
-
+﻿
+using KASHOP.BLL.MapsterConfigrations;
 using KASHOP.BLL.Service;
 using KASHOP.DAL;
 using KASHOP.DAL.Data;
@@ -41,6 +42,9 @@ namespace KASHOP.PL
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+            builder.Services.AddHttpContextAccessor(); // انا ضفتو
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
@@ -96,7 +100,9 @@ namespace KASHOP.PL
                     QueryStringKey = "lang",
                 });
             });
+
             builder.Services.AddSwaggerGen();
+            MapsterConfig.MapsterConfRegister();
 
             AppConfigurations.Config(builder.Services);
 
@@ -112,7 +118,7 @@ namespace KASHOP.PL
             }
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication(); // انا ضفتها
             app.UseAuthorization();
 
 

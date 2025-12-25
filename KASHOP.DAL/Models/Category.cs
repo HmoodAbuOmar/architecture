@@ -8,7 +8,8 @@ namespace KASHOP.DAL.Models
 {
     public class Category : BaseModel
     {
-        public string CreatedBy { get; set; }
-        public List<CategoryTranslattion> Translations { get; set; }
+        public List<CategoryTranslation> Translations { get; set; }
+
+        public List<Product> Products { get; set; }
     }
 }

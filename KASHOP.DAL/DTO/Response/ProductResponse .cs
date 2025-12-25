@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace KASHOP.DAL.DTO.Response
 {
-    public class CategoryResponse
+    public class ProductResponse
     {
         public int Id { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Status Status { get; set; }
         public String CreatedBy { get; set; }
-        //public ApplicationUser User { get; set; }
+
+        public string MainImage { get; set; }
         public List<CategoryTranslationResponse> Translations { get; set; }
     }
 }
