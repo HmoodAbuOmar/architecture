@@ -74,6 +74,7 @@ namespace KASHOP.PL
                    ValidateAudience = true,
                    ValidateLifetime = true,
                    ValidateIssuerSigningKey = true,
+                   ClockSkew = TimeSpan.Zero,
                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
                    ValidAudience = builder.Configuration["Jwt:Audience"],
                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
@@ -117,8 +118,10 @@ namespace KASHOP.PL
                 app.UseSwaggerUI();
             }
 
+
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
-            app.UseAuthentication(); // انا ضفتها
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
