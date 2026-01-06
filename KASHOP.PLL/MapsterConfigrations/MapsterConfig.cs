@@ -25,6 +25,9 @@ namespace KASHOP.BLL.MapsterConfigrations
                 .Select(t => t.Name).FirstOrDefault());
 
 
+            TypeAdapterConfig<Product, ProductResponse>.NewConfig()
+                .Map(dest => dest.MainImage, source => $"https://localhost:7237/Images/{source.MainImage}");
+
         }
     }
 }
