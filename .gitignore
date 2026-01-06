@@ -2,3 +2,8 @@
 .vs/
 KASHOP.DAL/bin/ KASHOP.PL/bin/ KASHOP.PLL/bin/
 KASHOP.DAL/obj/ KASHOP.PL/obj/ KASHOP.PLL/obj/
+
+# ignore VS + build outputs
+.vs/
+**/bin/
+**/obj/
