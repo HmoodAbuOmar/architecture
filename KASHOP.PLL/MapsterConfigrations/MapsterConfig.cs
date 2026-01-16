@@ -28,6 +28,19 @@ namespace KASHOP.BLL.MapsterConfigrations
             TypeAdapterConfig<Product, ProductResponse>.NewConfig()
                 .Map(dest => dest.MainImage, source => $"https://localhost:7237/Images/{source.MainImage}");
 
+            TypeAdapterConfig<Product, ProductUserResponse>.NewConfig()
+                  .Map(dest => dest.MainImage, source => $"https://localhost:7237/Images/{source.MainImage}")
+                .Map(dest => dest.Name, source => source.Translations.
+                Where(t => t.Language == MapContext.Current.Parameters["lang"].ToString())
+                .Select(t => t.Name).FirstOrDefault());
+
+            TypeAdapterConfig<Product, ProductUserDetails>.NewConfig()
+               .Map(dest => dest.Name, source => source.Translations.
+               Where(t => t.Language == MapContext.Current.Parameters["lang"].ToString())
+               .Select(t => t.Name).FirstOrDefault()).Map(dest => dest.Description, source => source.Translations.
+               Where(t => t.Language == MapContext.Current.Parameters["lang"].ToString())
+               .Select(t => t.Description).FirstOrDefault());
+
         }
     }
 }

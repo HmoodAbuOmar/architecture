@@ -17,9 +17,19 @@ namespace KASHOP.PL
             Services.AddTransient<IEmailSender, EmailSender>();
 
             Services.AddScoped<IFileServices, FileService>();
+
             Services.AddScoped<IProductService, ProductService>();
+
             Services.AddScoped<IProductRepository, ProductRepository>();
             Services.AddScoped<ITokenService, TokenService>();
+
+
+            Services.AddScoped<ICartService, CartService>();
+            Services.AddScoped<ICartRepositry, CartRepositry>();
+
+            Services.AddScoped<ICheckoutService, CheckoutService>();
+
+
 
 
         }

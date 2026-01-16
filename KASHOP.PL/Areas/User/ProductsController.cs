@@ -1,16 +1,13 @@
 ﻿using KASHOP.BLL.Service;
-using KASHOP.DAL.DTO.Request;
 using KASHOP.PL.Resourses;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
-namespace KASHOP.PL.Areas.Admin
+namespace KASHOP.PL.Areas.User
 {
-    [Route("api/admin/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
@@ -23,15 +20,16 @@ namespace KASHOP.PL.Areas.Admin
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> index()
+        public async Task<IActionResult> index([FromQuery] string lang = "en")
         {
-            var response = await _productService.GetAllProductsForAdmin();
+            var response = await _productService.GetAllProductsForUser(lang);
             return Ok(new { message = _localizer["Success"].Value, response });
         }
-        [HttpPost("")]
-        public async Task<IActionResult> Create([FromForm] ProductRequest request)
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> index([FromRoute] int id, [FromQuery] string lang = "en")
         {
-            var response = await _productService.CreateProduct(request);
+            var response = await _productService.GetAllProductsDetailsForUser(id, lang);
             return Ok(new { message = _localizer["Success"].Value, response });
         }
     }

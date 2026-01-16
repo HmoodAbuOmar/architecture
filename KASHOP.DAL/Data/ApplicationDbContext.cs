@@ -1,8 +1,5 @@
-﻿// هذا الملف هو كلاس ApplicationDbContext في ASP.NET Core يستخدم Entity Framework Core كطبقة البيانات (Data Access Layer).
-// الكلاس يرث من IdentityDbContext<ApplicationUser>، يعني فيه دعم للهوية والمستخدمين وإدارة الصلاحيات من مايكروسوفت.
-// دعني أوضح كل جزء فيه بالتفصيل وبالعربي:
-
-using KASHOP.DAL.Models; // استيراد الموديلات من المشروع
+﻿
+using KASHOP.DAL.Models;
 using Microsoft.AspNetCore.Http; // للوصول للـ HttpContext (المستخدم الحالي وغيره)
 using Microsoft.AspNetCore.Identity; // هويات المستخدمين
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore; // DbContext الخاص بإدارة الهوية
@@ -28,6 +25,8 @@ namespace KASHOP.DAL.Data
 
         public DbSet<ProductImage> ProductImages { get; set; }
 
+        public DbSet<Cart> Carts { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
             IHttpContextAccessor httpContextAccessor
             )
@@ -51,6 +50,11 @@ namespace KASHOP.DAL.Data
                 .WithMany()
                 .HasForeignKey(c => c.CreatedBy)
                 .OnDelete(DeleteBehavior.NoAction); // إذا حذف المستخدم لا تحذف التصنيفات
+
+            builder.Entity<Cart>().HasOne(c => c.User)
+               .WithMany()
+               .HasForeignKey(c => c.UserId)
+               .OnDelete(DeleteBehavior.NoAction);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

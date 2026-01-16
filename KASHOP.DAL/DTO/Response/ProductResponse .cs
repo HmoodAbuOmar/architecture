@@ -18,6 +18,6 @@ namespace KASHOP.DAL.DTO.Response
 
         public string MainImage { get; set; }
 
-        public List<CategoryTranslationResponse> Translations { get; set; }
+        public List<ProductTranslationResponse> Translations { get; set; }
     }
 }
