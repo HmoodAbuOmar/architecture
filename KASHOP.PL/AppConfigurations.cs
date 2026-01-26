@@ -30,6 +30,12 @@ namespace KASHOP.PL
             Services.AddScoped<ICheckoutService, CheckoutService>();
 
 
+            Services.AddScoped<IOrderRepository, OrderRepository>();
+
+            Services.AddScoped<IOrderItemsRepository, OrderItemsRepository>();
+
+
+
 
 
         }

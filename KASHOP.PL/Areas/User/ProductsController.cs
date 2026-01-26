@@ -20,9 +20,9 @@ namespace KASHOP.PL.Areas.User
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> index([FromQuery] string lang = "en")
+        public async Task<IActionResult> index([FromQuery] string lang = "en", [FromQuery] int page = 1, [FromQuery] int limit = 3, [FromQuery] string? search = null)
         {
-            var response = await _productService.GetAllProductsForUser(lang);
+            var response = await _productService.GetAllProductsForUser(lang, page, limit, search);
             return Ok(new { message = _localizer["Success"].Value, response });
         }
 
@@ -32,5 +32,7 @@ namespace KASHOP.PL.Areas.User
             var response = await _productService.GetAllProductsDetailsForUser(id, lang);
             return Ok(new { message = _localizer["Success"].Value, response });
         }
+
+
     }
 }

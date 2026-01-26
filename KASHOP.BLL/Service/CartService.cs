@@ -75,7 +75,6 @@ namespace KASHOP.BLL.Service
                 Price = c.Product.Price,
             }).ToList();
 
-            //var response = cartItems.Adapt<CartSummaryResponse>();
             return new CartSummaryResponse
             {
                 Items = items,

@@ -27,6 +27,10 @@ namespace KASHOP.DAL.Data
 
         public DbSet<Cart> Carts { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderItem> OrderItems { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
             IHttpContextAccessor httpContextAccessor
             )
@@ -51,10 +55,25 @@ namespace KASHOP.DAL.Data
                 .HasForeignKey(c => c.CreatedBy)
                 .OnDelete(DeleteBehavior.NoAction); // إذا حذف المستخدم لا تحذف التصنيفات
 
-            builder.Entity<Cart>().HasOne(c => c.User)
+            builder.Entity<Cart>()
+                .HasOne(c => c.User)
                .WithMany()
                .HasForeignKey(c => c.UserId)
                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Product>()
+                .HasOne(c => c.User)
+               .WithMany()
+               .HasForeignKey(c => c.CreatedBy)
+               .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Order>()
+                .HasOne(c => c.User)
+               .WithMany()
+               .HasForeignKey(c => c.UserId)
+               .OnDelete(DeleteBehavior.NoAction);
+
+
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

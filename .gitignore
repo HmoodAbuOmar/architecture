@@ -1,8 +1,9 @@
-
 .vs/
+.vscode/
 **/bin/
 **/obj/
 
-.vs/
-**/bin/
-**/obj/
+# secrets / local configs
+**/appsettings.Development.json
+Publishable key.txt
+.env

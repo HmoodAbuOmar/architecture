@@ -3,6 +3,7 @@ using KASHOP.DAL.DTO.Response;
 using KASHOP.DAL.Models;
 using KASHOP.DAL.Repository;
 using Mapster;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,10 +48,23 @@ namespace KASHOP.BLL.Service
 
             return product.Adapt<ProductResponse>();
         }
-        public async Task<List<ProductUserResponse>> GetAllProductsForUser(string lang = "en")
+
+        public async Task<List<ProductUserResponse>> GetAllProductsForUser(string lang = "en", int page = 1,
+            int limit = 3, string? search = null)
         {
-            var products = await _productRepository.GetAllAsync();
-            var response = products.BuildAdapter()
+            var query = _productRepository.Query();
+
+            if (search is not null)
+            {
+                query = query.Where(p => p.Translations.Any(t => t.Language == lang && t.Name.Contains(search) || t.Description.Contains(search)));
+            }
+
+            var totalCount = await query.CountAsync();
+
+            query = query.Skip((page - 1) * limit).Take(limit);
+
+
+            var response = query.BuildAdapter()
                 .AddParameters("lang", lang).AdaptToType<List<ProductUserResponse>>();
             return response;
         }

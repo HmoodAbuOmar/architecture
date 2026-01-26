@@ -32,7 +32,7 @@ namespace KASHOP.DAL.Repository
                 .ToListAsync();
         }
 
-        public async Task<Cart?> GetCartItemAsync(string userId, int productId)
+        public async Task<Cart?> GetCartItemAsync(string userId, int productId)// هل هذا اليوزر عندو سله فيها هذا المنتج؟
         {
             return await _context.Carts
                 .FirstOrDefaultAsync(c => c.UserId == userId && c.ProductId == productId);

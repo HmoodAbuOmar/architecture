@@ -16,15 +16,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\KASHOP.PLL\KASHOP.BLL.csproj" />
+		<ProjectReference Include="..\KASHOP.BLL\KASHOP.BLL.csproj" />
+		<ProjectReference Include="..\KASHOP.DAL\KASHOP.DAL.csproj" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Folder Include="wwwroot\Images\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="wwwroot\Images\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="wwwroot\Images\7e7f77e8-ca3a-4871-aff5-090f02570bdf.jpg" />
+		<None Include="wwwroot\Images\7e7f77e8-ca3a-4871-aff5-090f02570bdf.jpg" />
 	</ItemGroup>
 
 </Project>

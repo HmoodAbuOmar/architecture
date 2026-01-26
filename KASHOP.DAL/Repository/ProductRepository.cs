@@ -1,4 +1,5 @@
 ﻿using KASHOP.DAL.Data;
+using KASHOP.DAL.DTO.Response;
 using KASHOP.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -27,12 +28,42 @@ namespace KASHOP.DAL.Repository
             await _context.SaveChangesAsync();
             return requset;
         }
-        
+
         public async Task<Product?> FindByIdAsync(int id)
         {
             return await _context.Products.Include(c => c.Translations)
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
 
+
+        public IQueryable<Product> Query()
+        {
+            return _context.Products.Include(p => p.Translations)
+                .AsQueryable();
+
+        }
+
+        public async Task<bool> DecreaseQuantityAsync(List<(int productId, int quantity)> items)
+        {
+
+            var productsIds = items.Select(i => i.productId).ToList();
+
+
+            var products = await _context.Products.Where(p => productsIds.Contains(p.Id)).ToListAsync();
+
+            foreach (var product in products)
+            {
+                var item = items.FirstOrDefault(p => p.productId == product.Id);
+
+                if (product.Quantity < item.quantity)
+                {
+                    return false;
+                }
+                product.Quantity -= item.quantity;
+            }
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }
