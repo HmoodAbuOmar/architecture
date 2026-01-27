@@ -7,6 +7,7 @@ using KASHOP.DAL.Data;
 using KASHOP.DAL.Models;
 using KASHOP.DAL.Repository;
 using KASHOP.DAL.Utilites;
+using KASHOP.PL.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -124,6 +125,9 @@ namespace KASHOP.PL
                 app.UseSwaggerUI();
             }
 
+            //app.UseMiddleware<GlobalExceptionHandling>(); // طريقه قديمه
+
+            app.UseExceptionHandler(); // طريقه جديده (بعد .NET 8
 
             app.UseStaticFiles();
             app.UseHttpsRedirection();
@@ -141,8 +145,6 @@ namespace KASHOP.PL
                     await seeder.DataSeed();
                 }
             }
-
-
 
             app.MapControllers();
 

@@ -49,14 +49,57 @@ namespace KASHOP.BLL.Service
             return product.Adapt<ProductResponse>();
         }
 
-        public async Task<List<ProductUserResponse>> GetAllProductsForUser(string lang = "en", int page = 1,
-            int limit = 3, string? search = null)
+        public async Task<PagintedResponse<ProductUserResponse>> GetAllProductsForUser(string lang = "en", int page = 1,
+            int limit = 3,
+            string? search = null,
+            int? categotyId = null,
+            decimal? minPrice = null,
+            decimal? maxPrice = null,
+            string? sortBy = null,
+            bool asc = true
+            )
         {
             var query = _productRepository.Query();
 
             if (search is not null)
             {
                 query = query.Where(p => p.Translations.Any(t => t.Language == lang && t.Name.Contains(search) || t.Description.Contains(search)));
+            }
+
+            if (categotyId is not null)
+            {
+                query = query.Where(p => p.CategoryId == categotyId);
+            }
+
+            if (minPrice is not null)
+            {
+                query = query.Where(p => p.Price >= minPrice);
+            }
+
+            if (maxPrice is not null)
+            {
+                query = query.Where(p => p.Price <= maxPrice);
+            }
+
+
+            if (sortBy is not null)
+            {
+                sortBy = sortBy.ToLower();
+                if (sortBy == "price")
+                {
+                    query = asc ? query.OrderBy(p => p.Price) : query.OrderByDescending(p => p.Price);
+                }
+                else if (sortBy == "name")
+                {
+                    query = asc ? query.OrderBy(p => p.Translations.FirstOrDefault(t => t.Language == lang).Name)
+                        : query.OrderByDescending(p => p.Translations.FirstOrDefault(t => t.Language == lang).Name);
+                }
+
+                else if (sortBy == "rate")
+                {
+                    query = asc ? query.OrderBy(p => p.Rate) : query.OrderByDescending(p => p.Rate);
+                }
+
             }
 
             var totalCount = await query.CountAsync();
@@ -66,7 +109,14 @@ namespace KASHOP.BLL.Service
 
             var response = query.BuildAdapter()
                 .AddParameters("lang", lang).AdaptToType<List<ProductUserResponse>>();
-            return response;
+
+            return new PagintedResponse<ProductUserResponse>
+            {
+                TotalCount = totalCount,
+                Page = page,
+                Limit = limit,
+                Data = response
+            };
         }
 
 
