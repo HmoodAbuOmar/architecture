@@ -33,8 +33,11 @@ namespace KASHOP.BLL.Service
                     Message = "Product not found",
                 };
             }
+            var cartItem = await _cartRepositry.GetCartItemAsync(userId, request.ProductId);
 
-            if (product.Quantity < request.Count)
+            var existingCount = cartItem?.Count ?? 0;
+
+            if (product.Quantity < (existingCount + request.Count))
             {
                 return new BaseResponse
                 {
@@ -42,8 +45,6 @@ namespace KASHOP.BLL.Service
                     Message = "Not Enough stock",
                 };
             }
-
-            var cartItem = await _cartRepositry.GetCartItemAsync(userId, request.ProductId);
 
             if (cartItem is not null)
             {
@@ -79,6 +80,75 @@ namespace KASHOP.BLL.Service
             {
                 Items = items,
             };
+        }
+
+        public async Task<BaseResponse> UpdateQuantityAsync(string userId, int productId, int count)
+        {
+            var cartItem = await _cartRepositry.GetCartItemAsync(userId, productId);
+
+            var product = await _productRepository.FindByIdAsync(productId);
+
+            //if(count <= 0)
+            //{
+            //    return new BaseResponse
+            //    {
+            //        Success = false,
+            //        Message = "Invalid Count",
+            //    };
+            //}
+
+            if (count == 0)
+            {
+                await _cartRepositry.DeleteAsync(cartItem);
+                return new BaseResponse
+                {
+                    Success = true,
+                    Message = "Product removed from cart successfully",
+                };
+            }
+
+            if (product.Quantity < count)
+            {
+                return new BaseResponse
+                {
+                    Success = false,
+                    Message = "Not Enough stock",
+                };
+            }
+            cartItem.Count = count;
+            await _cartRepositry.UpdateAsync(cartItem);
+
+            return new BaseResponse
+            {
+                Success = true,
+                Message = "Cart item quantity updated successfully",
+            };
+
+        }
+
+
+
+        public async Task<BaseResponse> RemoveFromCartAsync(string userId, int productId)
+        {
+            var cartItem = await _cartRepositry.GetCartItemAsync(userId, productId);
+
+            if (cartItem is null)
+            {
+                return new BaseResponse
+                {
+                    Success = false,
+                    Message = "Cart item not found",
+                };
+            }
+
+            await _cartRepositry.DeleteAsync(cartItem);
+
+            return new BaseResponse
+            {
+                Success = true,
+                Message = "Product removed from cart successfully",
+            };
+
         }
 
         public async Task<BaseResponse> ClearCartAsync(string userId)

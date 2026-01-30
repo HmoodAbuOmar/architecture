@@ -37,6 +37,9 @@ namespace KASHOP.PL
             Services.AddExceptionHandler<GlobalExceptionHandler>();
             Services.AddProblemDetails();
 
+            Services.AddScoped<IOrderService, OrderService>();
+
+
 
 
         }

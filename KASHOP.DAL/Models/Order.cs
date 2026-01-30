@@ -9,16 +9,22 @@ namespace KASHOP.DAL.Models
     public enum OrderStatusEnum
     {
         Pending = 1,
-        Approved = 2,
-        Shipped = 3,
-        Delivered = 4,
-        Cancelled = 5
+        Cancelled = 2,
+        Approved = 3,
+        Shipped = 4,
+        Delivered = 5,
     }
 
     public enum PaymentMethodEnum
     {
         Cash = 1,
         Visa = 2
+    }
+
+    public enum PaymentStatusEnum
+    {
+        UnPaid = 1,
+        Paid = 2,
     }
     public class Order
     {
@@ -30,6 +36,7 @@ namespace KASHOP.DAL.Models
         public string? SessionId { get; set; }
         public string? PaymentId { get; set; }
 
+        public PaymentStatusEnum? PaymentStatus { get; set; }
         public decimal? AmountPaid { get; set; }
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }

@@ -34,6 +34,10 @@ namespace KASHOP.BLL.MapsterConfigrations
                .Select(t => t.Name).FirstOrDefault()).Map(dest => dest.Description, source => source.Translations.
                Where(t => t.Language == MapContext.Current.Parameters["lang"].ToString())
                .Select(t => t.Description).FirstOrDefault());
+
+            TypeAdapterConfig<Order, OrderResponse>.NewConfig()
+             .Map(dest => dest.UserName, source => source.User.UserName);
+
         }
     }
 }
