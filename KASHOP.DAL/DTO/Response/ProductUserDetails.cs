@@ -10,14 +10,12 @@ namespace KASHOP.DAL.DTO.Response
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
         public string Description { get; set; }
         public decimal Price { get; set; }
-
-        //public decimal Discount { get; set; }
-
         public int Quantity { get; set; }
         public double Rate { get; set; }
         public string MainImage { get; set; }
+        public List<string> SubImages { get; set; }
+        public List<ReviewResponse> Reviews { get; set; }
     }
 }

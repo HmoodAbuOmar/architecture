@@ -24,5 +24,7 @@ namespace KASHOP.DAL.Models
 
         public List<ProductImage> SupImages { get; set; }
 
+        public List<Review> Reviews { get; set; }
+
     }
 }
