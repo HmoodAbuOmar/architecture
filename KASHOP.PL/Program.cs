@@ -28,6 +28,18 @@ namespace KASHOP.PL
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  policy =>
+                                  {
+                                      policy.AllowAnyOrigin()
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod();
+                                  });
+            });
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -124,6 +136,9 @@ namespace KASHOP.PL
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             //app.UseMiddleware<GlobalExceptionHandling>(); // طريقه قديمه
 
